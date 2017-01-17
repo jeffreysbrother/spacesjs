@@ -1,0 +1,14 @@
+{
+  "name": "spacesjs",
+  "version": "0.0.1",
+  "description": "replace spaces with hyphens, lowercase all characters",
+  "main": "index.js",
+  "bin": {
+    "spacesjs": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "james cool",
+  "license": "ISC"
+}
