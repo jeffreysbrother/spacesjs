@@ -1,6 +1,6 @@
 {
   "name": "spacesjs",
-  "version": "0.0.11",
+  "version": "0.0.14",
   "description": "replace spaces with hyphens, lowercase all characters",
   "main": "index.js",
   "bin": {
@@ -10,5 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "james cool",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "glob-fs": "^0.1.6"
+  }
 }
