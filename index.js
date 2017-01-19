@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
+const target = './';
 const fs = require('fs');
-var glob = require('glob-fs')({ gitignore: true });
-var files = glob.readdirSync('./*.*');
 
-// this works for renaming individual files
-// fs.rename('./fart top.png', './fart-top.png', (err) => {
-//   if (err) throw err;
-//   console.log('file renamed!');
-// });
-
-glob.readdir('*.*', function(err, files) {
-  console.log(files);
+fs.readdir(target, (err, files) => {
+  files.forEach(file => {
+    fs.rename(file, file.replace(/\s/g, "-").toLowerCase(), (err) => {
+    if (err) throw err;
+      // is something supposed to go here?
+    });
+  });
+  console.log('files renamed!');
 });
