@@ -20,10 +20,5 @@ fs.readdir(target, function(err, files) {
         if (err2) throw err2;
       });
     });
-    // if (typeof argv.remove === 'string') {
-    //   console.log('The additional string ' + '\"' + argv.remove + '\"' + ' has also been removed');
-    // } else {
-    //   console.log('The number ' + '\"' + argv.remove + '\"' + ' has also been removed');
-    // }
   }
 });
