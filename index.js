@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-var argv = require('yargs').argv;
+const argv = require('yargs').argv;
 const target = './';
-var re = /([\s\-]{1,})/g;
+const re = /([\s\-]{1,})/g;
 
 fs.readdir(target, function(err, files) {
   files.forEach(function(file) {
