@@ -10,8 +10,16 @@ fs.readdir(target, function(err, files) {
       if (err) throw err;
     });
   });
-  console.log('files renamed!');
-  if (argv.x) {
-    console.log('You have also passed the argument: %d', argv.x);
+  console.log('Files renamed!');
+
+  // if argument "remove" is passed
+  if (argv.remove) {
+    // if that argument is a string
+    if (typeof argv.remove === 'string') {
+      console.log('The additional string ' + '\"' + argv.remove + '\"' + ' has also been removed');
+      // if not a string, it's probably a number
+    } else {
+      console.log('The number ' + '\"' + argv.remove + '\"' + ' has also been removed');
+    }
   }
 });
