@@ -10,7 +10,7 @@ Simply run the command `spacesjs` in the target directory.
 
 ###Other Features:
 
-With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass Spacesjs a flag if we need to remove additional characters (any arbitrary string) from our set of filenames:
+With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass SpacesJS a flag if we need to remove additional characters (any arbitrary string) from our set of filenames:
 
 ```bash
 spacesjs --remove="th-"
