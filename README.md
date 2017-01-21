@@ -10,6 +10,6 @@ Technically, the regular expression selects all whitespace (spaces, tabs, linefe
 - [ ] the ability to anticipate duplicate filenames
 - [ ] the elimination of additional (potentially detrimental) special characters
 - [ ] the elimination of hyphens just before the extension (`image-.png`)
-- [ ] the ability to pass additional arguments to the program, to eliminate desired characters
+- [ ] the ability to pass additional arguments to the program, to eliminate desired characters (**currently testing**)
 
 Thanks to [Tim Spinks](https://github.com/monkishtypist) for making valuable RegEx suggestions.
