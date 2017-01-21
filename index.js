@@ -15,12 +15,15 @@ fs.readdir(target, function(err, files) {
 
   // if argument "remove" is passed
   if (argv.remove) {
-    // if that argument is a string
-    if (typeof argv.remove === 'string') {
-      console.log('The additional string ' + '\"' + argv.remove + '\"' + ' has also been removed');
-      // if not a string, it's probably a number
-    } else {
-      console.log('The number ' + '\"' + argv.remove + '\"' + ' has also been removed');
-    }
+    files.forEach(function(file) {
+      fs.rename(file, file.replace(argv.remove, ""), function(err2) {
+        if (err2) throw err2;
+      });
+    });
+    // if (typeof argv.remove === 'string') {
+    //   console.log('The additional string ' + '\"' + argv.remove + '\"' + ' has also been removed');
+    // } else {
+    //   console.log('The number ' + '\"' + argv.remove + '\"' + ' has also been removed');
+    // }
   }
 });
