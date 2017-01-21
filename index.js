@@ -3,10 +3,11 @@
 const fs = require('fs');
 var argv = require('yargs').argv;
 const target = './';
+var re = /([\s\-]{1,})/g
 
 fs.readdir(target, function(err, files) {
   files.forEach(function(file) {
-    fs.rename(file, file.replace(/([\s\-]{1,})/g, "-").toLowerCase(), function(err) {
+    fs.rename(file, file.replace(re, "-").toLowerCase(), function(err) {
       if (err) throw err;
     });
   });
