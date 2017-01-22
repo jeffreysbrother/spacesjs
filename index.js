@@ -1,24 +1,32 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const argv = require('yargs').argv;
-const target = './';
-const re = /([\s\-]{1,})/g;
+var fs = require('fs');
+var argv = require('yargs').argv;
+var target = './';
+var re = /([\s\-]{1,})/g;
+var flag = argv.remove;
 
-fs.readdir(target, function(err, files) {
-  files.forEach(function(file) {
-    fs.rename(file, file.replace(re, "-").toLowerCase(), function(err) {
-      if (err) throw err;
-    });
-  });
-  console.log('Files renamed!');
-
-  // if argument "remove" is passed
-  if (argv.remove) {
+if (flag) {
+  fs.readdir(target, function(err, files) {
     files.forEach(function(file) {
-      fs.rename(file, file.replace(argv.remove, ""), function(err2) {
-        if (err2) throw err2;
+      fs.rename(file, file.replace(argv.remove, ""), function(err) {
+        if (err)
+          throw err;
+      });
+      fs.rename(file, file.replace(re, "-").toLowerCase(), function(err) {
+        if (err)
+          throw err;
       });
     });
-  }
-});
+  });
+} else {
+  fs.readdir(target, function(err, files) {
+    files.forEach(function(file) {
+      fs.rename(file, file.replace(re, "-").toLowerCase(), function(err) {
+        if (err)
+          throw err;
+      });
+    });
+  });
+}
+console.log('Files renamed!');

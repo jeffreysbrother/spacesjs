@@ -16,6 +16,8 @@ With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass Space
 spacesjs --remove="th-"
 ```
 
+*note*: It appears that the above quotation marks are optional, but it might be a good idea to include them.
+
 ###Future Additions:
 
 - [ ] error handling and unique messages (no files renamed, # of files renamed, etc.)
