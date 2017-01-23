@@ -9,14 +9,14 @@ Technically, the regular expression selects all whitespace (spaces, tabs, linefe
 Install node. After this, install SpacesJS:
 
 ```bash
-sudo npm install -g spacesjs
+npm install -g spacesjs
 ```
 
 Then, simply run the command `spacesjs` in the target directory.
 
 ###Other Features:
 
-With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass SpacesJS a flag if we need to remove additional characters (any arbitrary string) from our set of filenames:
+With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass SpacesJS a flag if we need to remove additional characters (any arbitrary string) from our set of filenames. After the `spacesjs` command, include the `--remove` flag and set it equal to the string you wish to remove.
 
 ```bash
 spacesjs --remove="th-"
