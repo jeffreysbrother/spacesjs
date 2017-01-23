@@ -6,7 +6,13 @@ Technically, the regular expression selects all whitespace (spaces, tabs, linefe
 
 ###Instructions
 
-Simply run the command `spacesjs` in the target directory.
+Install node. After this, install SpacesJS:
+
+```bash
+sudo npm install -g spacesjs
+```
+
+Then, simply run the command `spacesjs` in the target directory.
 
 ###Other Features:
 
@@ -25,5 +31,6 @@ spacesjs --remove="th-"
 - [ ] the elimination of additional (potentially detrimental) special characters
 - [ ] the elimination of hyphens just before the extension (`image-.png`)
 - [ ] prevent file extensions from being modified
+- [ ] improve program architecture to reduce redundancy and improve readability
 
 Thanks to [Tim Spinks](https://github.com/monkishtypist) for making valuable RegEx suggestions.
