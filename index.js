@@ -15,7 +15,7 @@ if (flag) {
         }
       });
       fs.rename(file, file.replace(re, "-").toLowerCase(), function(err) {
-        if (err) {
+        if (err) { 
           throw err;
         }
       });
