@@ -16,7 +16,7 @@ Then, simply run the command `spacesjs` in the target directory.
 
 ###Other Features:
 
-With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass SpacesJS a flag if we need to remove additional characters (any arbitrary string) from our set of filenames. After the `spacesjs` command, include the `--remove` flag and set it equal to the string you wish to remove.
+**This feature is currently unavailable** With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass SpacesJS a flag if we need to remove additional characters (any arbitrary string) from our set of filenames. After the `spacesjs` command, include the `--remove` flag and set it equal to the string you wish to remove.
 
 ```bash
 spacesjs --remove="th-"
@@ -26,6 +26,7 @@ spacesjs --remove="th-"
 
 ###Future Additions:
 
+- [ ] reintroduction of yargs. Previous attempts produce the message "Error: ENOENT: no such file or directory"
 - [ ] error handling and unique messages (no files renamed, # of files renamed, etc.)
 - [ ] the ability to anticipate duplicate filenames
 - [ ] the elimination of additional (potentially detrimental) special characters
