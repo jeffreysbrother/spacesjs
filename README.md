@@ -14,16 +14,6 @@ npm install -g spacesjs
 
 Then, simply run the command `spacesjs` in the target directory.
 
-###Other Features:
-
-**This feature is currently unavailable** With the help of [yargs](https://www.npmjs.com/package/yargs), we can pass SpacesJS a flag if we need to remove additional characters (any arbitrary string) from our set of filenames. After the `spacesjs` command, include the `--remove` flag and set it equal to the string you wish to remove.
-
-```bash
-spacesjs --remove="th-"
-```
-
-*note*: It appears that the above quotation marks are optional, but it might be a good idea to include them.
-
 ###Future Additions:
 
 - [ ] reintroduction of yargs. Previous attempts produce the message "Error: ENOENT: no such file or directory"
