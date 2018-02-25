@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var target = process.cwd();
-var re = /([\s\-]{1,})/g;
+const fs = require('fs');
+const target = process.cwd();
+const re = /([\s\-]{1,})/g;
 
-fs.readdir(target, function(err, files) {
-  files.forEach(function(file) {
-    fs.rename(file, file.replace(re, "-").toLowerCase(), function(err) {
+// use this instead if you wish to replace ALL non-alphanumeric characters (except period) with a hyphen
+// const re = /([^a-zA-Z0-9.]{1,})/g;
+
+fs.readdir(target, (err, files) => {
+  files.forEach(file => {
+    fs.rename(file, file.replace(re, "-").toLowerCase(), err => {
       if (err) {
         throw err;
       }

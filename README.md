@@ -16,12 +16,10 @@ Then, simply run the command `spacesjs` in the target directory.
 
 ### Future Additions:
 
-- [ ] reintroduction of yargs. Previous attempts produce the message "Error: ENOENT: no such file or directory"
 - [ ] error handling and unique messages (no files renamed, # of files renamed, etc.)
 - [ ] the ability to anticipate duplicate filenames
 - [ ] the elimination of additional (potentially detrimental) special characters
 - [ ] the elimination of hyphens just before the extension (`image-.png`)
 - [ ] prevent file extensions from being modified
-- [ ] improve program architecture to reduce redundancy and improve readability
 
 Thanks to [Tim Spinks](https://github.com/monkishtypist) for making valuable RegEx suggestions.
