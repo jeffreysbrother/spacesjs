@@ -27,7 +27,10 @@
     "spaces",
     "hyphens",
     "RegEx",
-		"jeffreysbrother",
-		"James Cool"
-  ]
+    "jeffreysbrother",
+    "James Cool"
+  ],
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }
