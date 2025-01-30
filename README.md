@@ -14,6 +14,16 @@ npm install -g spacesjs
 
 Then, simply run the command `spacesjs` in the target directory.
 
+### Options
+
+By default, SpacesJS will only rename files in the root of the current working directory. But if we want to rename all files recursively--in all child directories--we can pass it the `recursive` argument:
+
+```bash
+spacesjs recursive
+```
+
+Additionally, we can pass SpacesJS the `test` argument if we want to generate a series of files and folders for testing purposes. These files have shitty filenames that can be that can be improved by running the utility, with or without the recursive option.
+
 ### Future Additions:
 
 - [ ] error handling and unique messages (no files renamed, # of files renamed, etc.)
@@ -21,5 +31,6 @@ Then, simply run the command `spacesjs` in the target directory.
 - [ ] the elimination of additional (potentially detrimental) special characters
 - [ ] the elimination of hyphens just before the extension (`image-.png`)
 - [ ] prevent file extensions from being modified
+- [ ] colors
 
 Thanks to [Tim Spinks](https://github.com/monkishtypist) for making valuable RegEx suggestions.
