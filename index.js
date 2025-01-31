@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const { stat, writeFile, existsSync, mkdir, readdir, rename } = require('fs');
 const prompt = require('prompt-sync')();
 const currentDirectory = process.cwd();
 
@@ -11,7 +11,10 @@ const renameRecursively = args.includes('recursive');
 // default regular expression: select all whitespace, hyphens, and underscores
 const re = /([\s\-\_]{1,})/g;
 
+// colors
 const red = "\x1b[31m";
+const green = "\x1b[32m";
+const yellow = "\x1b[33m";
 const reset = "\x1b[0m";
 
 const dumbFileNames = [
@@ -33,7 +36,7 @@ const nestedDirectyory = `${currentDirectory}/nested-directory`;
 
 const createFiles = (files, location) => {
   files.forEach(file => {
-    fs.writeFile(`${location}/${file}`, 'dummy content', (err) => {      
+    writeFile(`${location}/${file}`, 'dummy content', (err) => {      
       if (err) throw err;
     });
   });
@@ -44,14 +47,15 @@ if (generateTestFiles) {
   createFiles(dumbFileNames, currentDirectory);
 
   // create new directory
-  if (!fs.existsSync(nestedDirectyory)) {
-    fs.mkdir(nestedDirectyory, (err) => {
+  if (!existsSync(nestedDirectyory)) {
+    mkdir(nestedDirectyory, (err) => {
       if (err) throw err;
+      
+      // generate files in the nested-directory folder
+      // TODO: there is a race condition here; sometimes not all files appear in the nested directory
+      createFiles(idioticFileNames, nestedDirectyory);
     });
 
-    // generate files in the nested-directory folder
-    // TODO: there is a race condition here; sometimes not all files appear in the nested directory
-    createFiles(idioticFileNames, nestedDirectyory);
   }
 
   console.log('files generated!');
@@ -69,25 +73,35 @@ if (recursiveWarning.toLowerCase() === 'n' || recursiveWarning.toLowerCase() ===
   process.exit();
 }
 
-fs.readdir(currentDirectory, { recursive: renameRecursively }, (err, files) => {  
+readdir(currentDirectory, { recursive: renameRecursively }, (err, files) => {
+  if (err) throw err;
+
   if (!files.length) {
     console.log('no files to rename');
     process.exit();
   }
 
-  let filesProcessed = 0;
+  let filesProcessed = 0,
+    directoriesSkipped = 0;
 
   files.forEach(file => {
-    // TODO: currently this will also rename directories. Perhaps this is bad.
-    fs.rename(file, file.replace(re, "-").toLowerCase(), err => {      
+    stat(file, (err, stats) => {
       if (err) throw err;
-
-      filesProcessed++;
-      if (filesProcessed === files.length) {
-        console.log('done!');
+      
+      if (stats.isDirectory()) {
+        directoriesSkipped++;
+        console.log(yellow + `${file} is a directory. Skipping...` + reset);
+        return;
       }
+
+      rename(file, file.replace(re, "-").toLowerCase(), err => {
+        if (err) throw err;
+  
+        filesProcessed++;
+        if (filesProcessed === (files.length - directoriesSkipped)) {
+          console.log(green + 'files renamed!' + reset);
+        }
+      });
     });
   });
-
-  console.log('done!');
 });
