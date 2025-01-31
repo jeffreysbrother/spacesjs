@@ -50,6 +50,7 @@ if (generateTestFiles) {
     });
 
     // generate files in the nested-directory folder
+    // TODO: there is a race condition here; sometimes not all files appear in the nested directory
     createFiles(idioticFileNames, nestedDirectyory);
   }
 
@@ -74,9 +75,17 @@ fs.readdir(currentDirectory, { recursive: renameRecursively }, (err, files) => {
     process.exit();
   }
 
+  let filesProcessed = 0;
+
   files.forEach(file => {
+    // TODO: currently this will also rename directories. Perhaps this is bad.
     fs.rename(file, file.replace(re, "-").toLowerCase(), err => {      
       if (err) throw err;
+
+      filesProcessed++;
+      if (filesProcessed === files.length) {
+        console.log('done!');
+      }
     });
   });
 
