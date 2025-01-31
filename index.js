@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const { stat, writeFile, existsSync, mkdir, readdir, rename } = require('fs');
+const { stat, writeFile, existsSync, readdir, rename } = require('fs');
+const { mkdir } = require('node:fs/promises');
 const prompt = require('prompt-sync')();
 const currentDirectory = process.cwd();
 
@@ -47,19 +48,16 @@ if (generateTestFiles) {
   createFiles(dumbFileNames, currentDirectory);
 
   // create new directory
-  if (!existsSync(nestedDirectyory)) {
-    mkdir(nestedDirectyory, (err) => {
-      if (err) throw err;
-      
+  mkdir(nestedDirectyory, { recursive: true })
+    .then(() => {
       // generate files in the nested-directory folder
-      // TODO: there is a race condition here; sometimes not all files appear in the nested directory
       createFiles(idioticFileNames, nestedDirectyory);
+      console.log('files generated!');
+      process.exit();
+    })
+    .catch(err => {
+      throw err;
     });
-
-  }
-
-  console.log('files generated!');
-  process.exit();
 }
 
 // recursive option
@@ -88,20 +86,21 @@ readdir(currentDirectory, { recursive: renameRecursively }, (err, files) => {
     stat(file, (err, stats) => {
       if (err) throw err;
       
+      // TODO: if an additional "test" directory is created within the nested-directory and that directory
+      // is non-empty and has trailing hyphens, it will attempt to rename the directory itself, and fail.
       if (stats.isDirectory()) {
         directoriesSkipped++;
         console.log(yellow + `${file} is a directory. Skipping...` + reset);
-        return;
+      } else {
+        rename(file, file.replace(re, "-").toLowerCase(), err => {
+          if (err) throw err;
+    
+          filesProcessed++;
+          if (filesProcessed === (files.length - directoriesSkipped)) {
+            console.log(green + 'files renamed!' + reset);
+          }
+        });
       }
-
-      rename(file, file.replace(re, "-").toLowerCase(), err => {
-        if (err) throw err;
-  
-        filesProcessed++;
-        if (filesProcessed === (files.length - directoriesSkipped)) {
-          console.log(green + 'files renamed!' + reset);
-        }
-      });
     });
   });
 });
