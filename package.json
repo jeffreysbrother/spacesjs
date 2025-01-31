@@ -1,6 +1,6 @@
 {
   "name": "spacesjs",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "replace spaces with hyphens, lowercase all characters",
   "main": "index.js",
   "bin": {
