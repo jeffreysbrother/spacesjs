@@ -24,13 +24,16 @@ spacesjs recursive
 
 Additionally, we can pass SpacesJS the `test` argument if we want to generate a series of files and folders for testing purposes. These files have shitty filenames that can be that can be improved by running the utility, with or without the recursive option.
 
+```bash
+spacesjs test
+```
+
 ### Future Additions:
 
 - [ ] error handling and unique messages (no files renamed, # of files renamed, etc.)
-- [ ] the ability to anticipate duplicate filenames
-- [ ] the elimination of additional (potentially detrimental) special characters
-- [ ] the elimination of hyphens just before the extension (`image-.png`)
+- [ ] optionally eliminate other special characters
+- [ ] eliminate hyphens just before the file extension (`image-.png`)
 - [ ] prevent file extensions from being modified
-- [ ] colors
+- [x] colors
 
 Thanks to [Tim Spinks](https://github.com/monkishtypist) for making valuable RegEx suggestions.

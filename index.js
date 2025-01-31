@@ -9,7 +9,10 @@ const generateTestFiles = args.includes('test');
 const renameRecursively = args.includes('recursive');
 
 // default regular expression: select all whitespace, hyphens, and underscores
-let re = /([\s\-\_]{1,})/g;
+const re = /([\s\-\_]{1,})/g;
+
+const red = "\x1b[31m";
+const reset = "\x1b[0m";
 
 const dumbFileNames = [
   'newfile    -.txt',
@@ -57,7 +60,7 @@ if (generateTestFiles) {
 // recursive option
 let recursiveWarning = '';
 if (renameRecursively) {
-  recursiveWarning = prompt('This will rename ALL files in ALL subfolders. Are you sure you want to do this? (y/n) ');
+  recursiveWarning = prompt(red + 'This will rename ALL files in ALL subfolders. Are you sure you want to do this? (y/n) ' + reset);
 }
 
 if (recursiveWarning.toLowerCase() === 'n' || recursiveWarning.toLowerCase() === 'no') {
@@ -65,9 +68,8 @@ if (recursiveWarning.toLowerCase() === 'n' || recursiveWarning.toLowerCase() ===
   process.exit();
 }
 
-fs.readdir(currentDirectory, { recursive: renameRecursively }, (err, files) => {
-  // "files" array will have just one item if the directory is empty (the name of the current working directory)
-  if (files.length === 1) {
+fs.readdir(currentDirectory, { recursive: renameRecursively }, (err, files) => {  
+  if (!files.length) {
     console.log('no files to rename');
     process.exit();
   }
