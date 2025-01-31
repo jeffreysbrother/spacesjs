@@ -86,12 +86,12 @@ readdir(currentDirectory, { recursive: renameRecursively }, (err, files) => {
     stat(file, (err, stats) => {
       if (err) throw err;
       
-      // TODO: if an additional "test" directory is created within the nested-directory and that directory
-      // is non-empty and has trailing hyphens, it will attempt to rename the directory itself, and fail.
       if (stats.isDirectory()) {
         directoriesSkipped++;
         console.log(yellow + `${file} is a directory. Skipping...` + reset);
       } else {
+        // rename will fail if the directory has whitespace OR 2+ trailing hyphens
+        // but who names directories like that anyway?
         rename(file, file.replace(re, "-").toLowerCase(), err => {
           if (err) throw err;
     
